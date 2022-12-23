@@ -137,7 +137,7 @@ class Ui_MainWindow(object):
         self.errorLabel = QtWidgets.QLabel(self.LoginWidget)
         self.errorLabel.setStyleSheet("color:rgb(255, 255, 255);")
         self.errorLabel.setAlignment(QtCore.Qt.AlignCenter)
-        self.errorLabel.setObjectName("errorLabel")
+        self.errorLabel.setObjectName("")
         self.verticalLayout_3.addWidget(self.errorLabel)
         spacerItem3 = QtWidgets.QSpacerItem(20, 3, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         self.verticalLayout_3.addItem(spacerItem3)
@@ -163,6 +163,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "BurgerBurger"))
         self.title.setText(_translate("MainWindow", "Введите свой номер"))
-        self.errorLabel.setText(_translate("MainWindow", "ErrorLabel"))
+        self.errorLabel.setText(_translate("MainWindow", ""))
         self.pushButton.setText(_translate("MainWindow", "Принять"))
 import resources_rc

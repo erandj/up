@@ -4,6 +4,8 @@ from PyQt5.QtWidgets import QMainWindow
 import MainWindow
 import AccountWindow
 import RegistrationWindow
+import BasketWindow
+import sqlite3
 
 
 class Main(QMainWindow):
@@ -13,8 +15,23 @@ class Main(QMainWindow):
         self.ui.setupUi(self)
 
         self.account = account
+        self.basket = basket
 
         self.ui.pushButton.clicked.connect(self.MoveToAccountWindow)
+        self.ui.pushButton_2.clicked.connect(self.Buy)
+
+        for i in range(self.ui.productCounts):
+            self.ui.buttons[i].clicked.connect(self.AddToBasket)
+
+    def AddToBasket(self):
+        self.basket.append(self.sender().objectName())
+        self.ui.pushButton_2.setText(f'Корзина ({len(self.basket)})')
+        self.ui.pushButton_2.setVisible(True)
+
+    def Buy(self):
+        self.newWindow = Basket()
+        self.newWindow.show()
+        self.close()
 
     def MoveToAccountWindow(self):
         if self.account != '':
@@ -81,8 +98,30 @@ class Account(QMainWindow):
 
         self.ui.numberLabel.setText(self.account)
 
+        self.ui.pushButton_4.clicked.connect(self.MoveBack)
+
+    def MoveBack(self):
+        self.newWindow = Main()
+        self.newWindow.show()
+        self.close()
+
+
+class Basket(QMainWindow):
+    def __init__(self):
+        super(Basket, self).__init__()
+        self.ui = BasketWindow.Ui_MainWindow(basket)
+        self.ui.setupUi(self)
+
+        self.ui.pushButton_4.clicked.connect(self.MoveBack)
+
+    def MoveBack(self):
+        self.newWindow = Main()
+        self.newWindow.show()
+        self.close()
 
 account = ''
+basket = []
+conn = sqlite3.connect('db.db')
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)
