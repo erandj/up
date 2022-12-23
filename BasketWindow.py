@@ -195,12 +195,12 @@ class Ui_MainWindow(object):
         for i in range(len(self.basket)):
             for product in self.res:
                 if self.basket[i] == product[1]:
+                        print(self.basket[i], product)
                         self.basketLayout.append(QtWidgets.QPushButton(self.widget))
 
-                        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+                        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
                         sizePolicy.setHorizontalStretch(0)
                         sizePolicy.setVerticalStretch(0)
-                        sizePolicy.setHeightForWidth(self.basketLayout[i].sizePolicy().hasHeightForWidth())
                         self.basketLayout[i].setSizePolicy(sizePolicy)
 
                         font = QtGui.QFont()
@@ -218,4 +218,5 @@ class Ui_MainWindow(object):
                         self.basketLayout[i].setText(product[1] + " - " + str(product[2]) + "руб.")
                         self.basketLayout[i].setStyleSheet("text-align: left; border-radius: 5px")
                         self.verticalLayout_5.addWidget(self.basketLayout[i])
+                        break
 import resources_rc
