@@ -123,7 +123,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.addWidget(self.AccountWidget)
         self.verticalLayout.addWidget(self.Header)
         self.MainContent = QtWidgets.QWidget(self.MainWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.MainContent.sizePolicy().hasHeightForWidth())
@@ -354,7 +354,7 @@ class Ui_MainWindow(object):
         self.Update()
 
     def Update(self):
-        buttonHeight = 70
+        buttonHeight = 100
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 414, (buttonHeight+self.verticalLayout_2.spacing())*self.productCounts+self.verticalLayout_2.spacing()))
         for i in reversed(range(self.verticalLayout_2.count())):
             self.verticalLayout_2.itemAt(i).widget().setParent(None)
@@ -364,7 +364,7 @@ class Ui_MainWindow(object):
             self.buttons[i].setMaximumSize(QtCore.QSize(16777215, buttonHeight))
 
             font = QtGui.QFont()
-            font.setPointSize(16)
+            font.setPointSize(12)
             font.setBold(True)
             font.setWeight(75)
             self.buttons[i].setFont(font)
@@ -372,7 +372,7 @@ class Ui_MainWindow(object):
             icon1 = QtGui.QIcon()
             icon1.addPixmap(QtGui.QPixmap(self.res[i][3]), QtGui.QIcon.Normal, QtGui.QIcon.Off)
             self.buttons[i].setIcon(icon1)
-            self.buttons[i].setIconSize(QtCore.QSize(48, 48))
+            self.buttons[i].setIconSize(QtCore.QSize(66, 66))
 
             self.buttons[i].setObjectName(self.res[i][1])
             self.buttons[i].setText(self.res[i][1] + " - " + str(self.res[i][2]) + "руб.")

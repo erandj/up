@@ -29,13 +29,15 @@ class Main(QMainWindow):
         self.ui.pushButton_2.setVisible(True)
 
     def Buy(self):
+        global basket
+        basket = self.basket
         self.newWindow = Basket()
         self.newWindow.show()
         self.close()
 
     def MoveToAccountWindow(self):
         if self.account != '':
-            self.newWindow = Account()
+            self.newWindow = Account(account)
             self.newWindow.show()
             self.close()
         else:
@@ -73,23 +75,27 @@ class Registration(QMainWindow):
             self.ui.errorLabel.setText("Проверьте правильность номера!")
             return
 
-        account = self.number
+        cur = conn.cursor()
 
-        self.newWindow = Account()
+        res = cur.execute("SELECT phone FROM accounts").fetchall()
+        if not (self.number,) in res:
+            cur.execute("INSERT INTO accounts(phone) VALUES (?)", (self.number,))
+            conn.commit()
+
+
+
+        self.newWindow = Account(self.number)
         self.newWindow.show()
         self.close()
 
 
 class Account(QMainWindow):
-    def __init__(self):
+    def __init__(self, account):
         super(Account, self).__init__()
         self.ui = AccountWindow.Ui_MainWindow()
         self.ui.setupUi(self)
 
-        if account == '':
-            self.newWindow = Registration()
-            self.newWindow.show()
-            self.close()
+        self.account = account
 
         if len(account) == 11:
             self.account = account[0] + " (" + account[1:4] + ") " + account[4:7] + "-" + account[7:9] + "-" + account[9:11]

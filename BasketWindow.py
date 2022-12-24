@@ -127,16 +127,7 @@ class Ui_MainWindow(object):
             self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
             self.verticalLayout_3.setSpacing(10)
             self.verticalLayout_3.setObjectName("verticalLayout_3")
-            self.widget = QtWidgets.QWidget(self.ProductListWidget)
-            sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-            sizePolicy.setHorizontalStretch(0)
-            sizePolicy.setVerticalStretch(0)
-            sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
-            self.widget.setSizePolicy(sizePolicy)
-            self.widget.setObjectName("widget")
-            self.verticalLayout_5 = QtWidgets.QVBoxLayout(self.widget)
-            self.verticalLayout_5.setObjectName("verticalLayout_5")
-            self.product = QtWidgets.QLabel(self.widget)
+            self.product = QtWidgets.QLabel(self.ProductListWidget)
             sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
             sizePolicy.setHorizontalStretch(0)
             sizePolicy.setVerticalStretch(0)
@@ -148,8 +139,7 @@ class Ui_MainWindow(object):
             font.setWeight(75)
             self.product.setFont(font)
             self.product.setObjectName("product")
-            self.verticalLayout_5.addWidget(self.product)
-            self.verticalLayout_3.addWidget(self.widget, 0, QtCore.Qt.AlignTop)
+            self.verticalLayout_3.addWidget(self.product)
             self.verticalLayout_2.addWidget(self.ProductListWidget)
             spacerItem1 = QtWidgets.QSpacerItem(20, 10, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
             self.verticalLayout_2.addItem(spacerItem1)
@@ -187,7 +177,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.label.setText(_translate("MainWindow", "BurgerBurger"))
         self.product.setText(_translate("MainWindow", "aliksfnafnaf"))
-        self.pushButton.setText(_translate("MainWindow", "PushButton"))
+        self.pushButton.setText(_translate("MainWindow", "Купить"))
 
     def Update(self):
         for i in reversed(range(self.verticalLayout_3.count())):
@@ -195,8 +185,7 @@ class Ui_MainWindow(object):
         for i in range(len(self.basket)):
             for product in self.res:
                 if self.basket[i] == product[1]:
-                        print(self.basket[i], product)
-                        self.basketLayout.append(QtWidgets.QPushButton(self.widget))
+                        self.basketLayout.append(QtWidgets.QPushButton(self.ProductListWidget))
 
                         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
                         sizePolicy.setHorizontalStretch(0)
@@ -217,6 +206,6 @@ class Ui_MainWindow(object):
                         self.basketLayout[i].setObjectName(product[1])
                         self.basketLayout[i].setText(product[1] + " - " + str(product[2]) + "руб.")
                         self.basketLayout[i].setStyleSheet("text-align: left; border-radius: 5px")
-                        self.verticalLayout_5.addWidget(self.basketLayout[i])
+                        self.verticalLayout_3.addWidget(self.basketLayout[i])
                         break
 import resources_rc
